@@ -1,0 +1,1249 @@
+/* Color System & Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --bg-cream: #F7E8E4;
+    --pink-blush: #FFD9E2;
+    --ivory-warm: #FFF7F3;
+    --dark-navy: #1E1E2E;
+    --slate-blue: #2F4156;
+    --dusty-rose: #D48B8B;
+    --white: #ffffff;
+    --tape-color: rgba(255, 217, 226, 0.7);
+    --gold: #FFD700;
+}
+
+/* Core Resets */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background-color: #f6e6e2;
+    /* Rich desk wallpaper texture */
+    background-image: 
+        radial-gradient(rgba(212, 139, 139, 0.2) 1.5px, transparent 1.5px),
+        linear-gradient(to bottom, rgba(255, 247, 243, 0.4), rgba(247, 232, 228, 0.6));
+    background-size: 24px 24px, 100% 100%;
+    font-family: 'Poppins', sans-serif;
+    color: var(--slate-blue);
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Fairy Lights Desktop Decoration */
+.fairy-lights {
+    position: fixed;
+    top: -5px;
+    left: 0;
+    width: 100%;
+    height: 35px;
+    z-index: 5;
+    display: flex;
+    justify-content: space-around;
+    pointer-events: none;
+    padding: 0 5%;
+}
+
+.light-string {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 15px;
+    border-bottom: 1.5px solid rgba(74, 48, 48, 0.3);
+    border-radius: 50%;
+    transform: translateY(-8px);
+}
+
+.bulb {
+    width: 10px;
+    height: 14px;
+    background: #ffeb3b;
+    border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+    box-shadow: 0 0 10px #ffeb3b, 0 0 20px #ffeb3b;
+    animation: twinkle 1.5s infinite alternate ease-in-out;
+    position: relative;
+    top: 5px;
+}
+
+.bulb:nth-child(even) {
+    background: #ff80ab;
+    box-shadow: 0 0 10px #ff80ab, 0 0 20px #ff80ab;
+    animation-delay: 0.5s;
+}
+
+.bulb:nth-child(3n) {
+    background: #80deea;
+    box-shadow: 0 0 10px #80deea, 0 0 20px #80deea;
+    animation-delay: 0.9s;
+}
+
+.bulb:nth-child(4n) {
+    background: #c5e1a5;
+    box-shadow: 0 0 10px #c5e1a5, 0 0 20px #c5e1a5;
+    animation-delay: 1.2s;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.3; transform: scale(0.9); }
+    100% { opacity: 1; transform: scale(1.1); }
+}
+
+/* Cozy polaroids on the outer desktop background */
+.desktop-bg-decor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.desktop-polaroid {
+    position: absolute;
+    background: white;
+    padding: 10px 10px 30px 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+    border-radius: 2px;
+    opacity: 0.25;
+    transform: rotate(5deg);
+    width: 120px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+}
+
+.desktop-polaroid img {
+    width: 100%;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 1px;
+}
+
+.desktop-polaroid:nth-child(1) { top: 12%; left: 8%; transform: rotate(-12deg) scale(1.2); }
+.desktop-polaroid:nth-child(2) { top: 60%; left: 6%; transform: rotate(15deg) scale(1.3); }
+.desktop-polaroid:nth-child(3) { top: 15%; right: 8%; transform: rotate(8deg) scale(1.25); }
+.desktop-polaroid:nth-child(4) { top: 65%; right: 7%; transform: rotate(-10deg) scale(1.15); }
+
+/* Main App Layout */
+#app-container {
+    width: 100%;
+    height: 100%;
+    max-width: 410px;
+    max-height: 860px;
+    aspect-ratio: 9/16;
+    background-color: var(--ivory-warm);
+    position: relative;
+    /* Realistic mobile/notebook phone device styling */
+    box-shadow: 
+        0 25px 50px -12px rgba(74, 48, 48, 0.25), 
+        0 0 0 12px rgba(255, 255, 255, 0.95), 
+        0 0 0 13px rgba(212, 139, 139, 0.2),
+        0 20px 40px rgba(0, 0, 0, 0.08);
+    border-radius: 40px;
+    overflow: hidden;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Custom Sparkle Trail Canvas */
+#sparkle-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+/* Audio Controller */
+.audio-player-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.music-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(5px);
+    border: 1.5px solid var(--dusty-rose);
+    box-shadow: 0 4px 15px rgba(212, 139, 139, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.music-btn:hover {
+    transform: scale(1.1);
+    background: #fff;
+}
+
+.music-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: var(--dusty-rose);
+    transition: all 0.3s ease;
+}
+
+.music-btn.playing {
+    animation: rotateBtn 12s linear infinite;
+    background: var(--pink-blush);
+}
+
+/* Scrapbook Visual Elements */
+.scrapbook-paper {
+    background-color: var(--ivory-warm);
+    /* Notebook paper line textures */
+    background-image: 
+        linear-gradient(rgba(212, 139, 139, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212, 139, 139, 0.04) 1px, transparent 1px);
+    background-size: 18px 18px;
+    position: relative;
+    box-shadow: inset 0 0 50px rgba(74, 48, 48, 0.04);
+}
+
+.scrapbook-paper::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.025'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 5;
+}
+
+/* Spiral Binder Rings Overlay */
+.notebook-binder {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(0,0,0,0.05), transparent);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 30px 0;
+    pointer-events: none;
+}
+
+.binder-hole {
+    width: 8px;
+    height: 14px;
+    background: #2b1f1d;
+    border-radius: 4px;
+    box-shadow: inset 2px 2px 3px rgba(0,0,0,0.8), 1px 1px 1px rgba(255,255,255,0.1);
+    position: relative;
+}
+
+.binder-ring {
+    position: absolute;
+    left: -10px;
+    top: -3px;
+    width: 24px;
+    height: 20px;
+    border: 3.5px solid #dcdcdc;
+    border-right-color: transparent;
+    border-radius: 50%;
+    transform: rotate(-12deg);
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.15);
+    background: linear-gradient(135deg, #ffffff 10%, #aaaaaa 60%, #555555 100%);
+}
+
+/* Torn Edge Page Dividers */
+.torn-divider {
+    width: 100%;
+    height: 14px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0 L1200,0 L1200,60 Q1180,80 1160,50 Q1140,20 1120,70 Q1100,100 1080,40 Q1060,20 1040,65 Q1020,90 1000,50 Q980,10 960,75 Q940,110 920,40 Q900,10 880,80 Q860,110 840,45 Q820,10 800,60 Q780,95 760,40 Q740,10 720,70 Q700,100 680,45 Q660,10 640,75 Q620,110 600,45 Q580,10 560,80 Q540,115 520,50 Q500,10 480,75 Q460,110 440,40 Q420,10 400,65 Q380,95 360,45 Q340,15 320,80 Q300,110 280,45 Q260,10 240,65 Q220,95 200,40 Q180,10 160,75 Q140,110 120,40 Q100,10 80,80 Q60,110 40,45 Q20,10 0,60 Z' fill='%23FFF7F3'/%3E%3C/svg%3E");
+    background-size: 100% 100%;
+    transform: rotate(180deg);
+    position: relative;
+    z-index: 8;
+    margin-top: -1px;
+}
+
+/* Screens sliding system */
+.screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+    z-index: 10;
+}
+
+.screen.hidden {
+    transform: translateY(100%);
+}
+
+/* Opening Screen Styling */
+#opening-screen {
+    background-color: var(--dark-navy);
+    z-index: 100;
+    color: var(--pink-blush);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    text-align: center;
+}
+
+#opening-screen.hidden {
+    transform: translateY(-100%);
+}
+
+.starry-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: radial-gradient(circle at 50% 50%, #202033 0%, #0d0d15 100%);
+}
+
+.star {
+    position: absolute;
+    background-color: #fff;
+    border-radius: 50%;
+    animation: pulseStar 2s infinite alternate;
+}
+
+@keyframes pulseStar {
+    0% { opacity: 0.15; transform: scale(0.7); }
+    100% { opacity: 1; transform: scale(1.3); }
+}
+
+.intro-textbox {
+    z-index: 10;
+    max-width: 290px;
+}
+
+.intro-typing {
+    font-family: 'Caveat', cursive;
+    font-size: 1.9rem;
+    margin-bottom: 30px;
+    min-height: 60px;
+    line-height: 1.4;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.intro-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.7rem;
+    font-weight: 700;
+    opacity: 0;
+    transform: scale(0.85);
+    transition: all 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    margin-bottom: 40px;
+    text-shadow: 0 0 25px rgba(255, 217, 226, 0.5);
+    line-height: 1.2;
+}
+
+.intro-title.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.btn-enter-world {
+    background-color: var(--pink-blush);
+    color: var(--dark-navy);
+    border: none;
+    padding: 15px 30px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-radius: 50px;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(25px);
+    transition: all 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.4s;
+    box-shadow: 0 8px 30px rgba(255, 217, 226, 0.35);
+}
+
+.btn-enter-world.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.btn-enter-world:hover {
+    background-color: #ffaec3;
+    transform: scale(1.03) translateY(-2px);
+    box-shadow: 0 12px 35px rgba(255, 217, 226, 0.55);
+}
+
+/* Scrapbook Internal Scroll screen */
+#scrapbook-screen {
+    z-index: 50;
+    background-color: var(--ivory-warm);
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+
+#scrapbook-screen::-webkit-scrollbar {
+    display: none;
+}
+
+.scrapbook-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.scrapbook-page {
+    width: 100%;
+    min-height: 100vh;
+    padding: 50px 25px 40px 35px; /* left indent to avoid binder overlap */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+/* Typography elements */
+.page-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.3rem;
+    color: var(--dusty-rose);
+    margin-bottom: 25px;
+    font-weight: 700;
+    position: relative;
+    display: inline-block;
+}
+
+.page-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 70px;
+    height: 3.5px;
+    background: var(--pink-blush);
+    border-radius: 3px;
+}
+
+/* Cute hand-made stamps, notes, tapes */
+.sticker {
+    background: white;
+    padding: 6px;
+    box-shadow: 0 6px 15px rgba(74, 48, 48, 0.08);
+    border-radius: 4px;
+    border: 1px solid #f0f0f0;
+    display: inline-block;
+    transition: transform 0.4s ease;
+}
+
+.tape-sticker {
+    position: absolute;
+    background-color: var(--tape-color);
+    backdrop-filter: blur(1.5px);
+    height: 18px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+    z-index: 10;
+    border-left: 2px dashed rgba(255,255,255,0.5);
+    border-right: 2px dashed rgba(255,255,255,0.5);
+}
+
+.handwritten-text {
+    font-family: 'Caveat', cursive;
+    font-size: 1.6rem;
+    color: var(--dusty-rose);
+    font-weight: 600;
+}
+
+/* Hero Section */
+#hero-page {
+    justify-content: space-around;
+    padding-top: 70px;
+}
+
+.hero-portrait-wrapper {
+    position: relative;
+    width: 230px;
+    height: 310px;
+    margin: 0 auto;
+    transform: rotate(-3.5deg);
+    box-shadow: 0 15px 40px rgba(74, 48, 48, 0.14);
+    background-color: var(--white);
+    padding: 14px 14px 40px 14px;
+    border-radius: 3px;
+    border: 1px solid rgba(0,0,0,0.02);
+}
+
+.hero-portrait-wrapper .tape-top {
+    width: 90px;
+    top: -11px;
+    left: calc(50% - 45px);
+    transform: rotate(2deg);
+}
+
+.hero-portrait {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 1px;
+}
+
+.hero-caption {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-family: 'Caveat', cursive;
+    font-size: 1.45rem;
+    color: #666;
+    font-weight: 600;
+}
+
+.dynamic-words-box {
+    text-align: center;
+    margin: 25px 0 15px 0;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dynamic-word {
+    font-family: 'Caveat', cursive;
+    font-size: 2.3rem;
+    font-weight: 700;
+    color: var(--dusty-rose);
+    position: absolute;
+    opacity: 0;
+    transform: translateY(12px) scale(0.85);
+    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.dynamic-word.active {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    text-shadow: 0 2px 8px rgba(212,139,139,0.15);
+}
+
+/* 3. Who is Somu? Cards Grid */
+.cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 10px;
+}
+
+.scrapbook-card {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 16px;
+    box-shadow: 0 8px 20px rgba(74, 48, 48, 0.04);
+    border: 1px dashed rgba(212, 139, 139, 0.25);
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    height: 125px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.scrapbook-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 12px 25px rgba(74, 48, 48, 0.08);
+    border-color: var(--dusty-rose);
+}
+
+.card-title {
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    color: var(--slate-blue);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.card-content {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+/* Melting Magnum animation */
+.melt-overlay {
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #3e2213; /* Magnum Dark Chocolate */
+    transition: transform 0.9s cubic-bezier(0.77, 0, 0.175, 1);
+    pointer-events: none;
+    z-index: 5;
+    border-bottom-left-radius: 40% 25px;
+    border-bottom-right-radius: 40% 25px;
+}
+
+.scrapbook-card.melted {
+    border-color: #3e2213;
+}
+
+.scrapbook-card.melted .melt-overlay {
+    transform: translateY(100%);
+}
+
+.melt-text {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    color: #ffd9e2;
+    font-family: 'Caveat', cursive;
+    font-size: 1.5rem;
+    z-index: 6;
+    opacity: 0;
+    transform: translateY(-50%) scale(0.75);
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.4s;
+    font-weight: 700;
+}
+
+.scrapbook-card.melted .melt-text {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+}
+
+/* Blooming rose vector outline draw */
+.rose-bloom-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    z-index: 5;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    background: rgba(255, 255, 255, 0.92);
+}
+
+.scrapbook-card.bloomed .rose-bloom-container {
+    opacity: 1;
+}
+
+.rose-svg {
+    width: 85px;
+    height: 85px;
+}
+
+.rose-path {
+    stroke: var(--dusty-rose);
+    stroke-width: 2.5;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    transition: stroke-dashoffset 2.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scrapbook-card.bloomed .rose-path {
+    stroke-dashoffset: 0;
+}
+
+/* Steam comfort food */
+.steam-container {
+    position: absolute;
+    bottom: 50px;
+    right: 25px;
+    display: flex;
+    gap: 5px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.scrapbook-card.steaming .steam-container {
+    opacity: 0.9;
+}
+
+.steam-line {
+    width: 2.5px;
+    height: 25px;
+    background: linear-gradient(to top, var(--dusty-rose) 30%, rgba(255,255,255,0));
+    border-radius: 5px;
+    animation: riseSteam 1.6s infinite linear;
+}
+
+.steam-line:nth-child(2) { animation-delay: 0.5s; height: 30px; }
+.steam-line:nth-child(3) { animation-delay: 0.9s; }
+
+@keyframes riseSteam {
+    0% { transform: translateY(6px) scaleX(1); opacity: 0; }
+    40% { transform: translateY(-3px) scaleX(1.3); opacity: 0.8; }
+    100% { transform: translateY(-18px) scaleX(0.7); opacity: 0; }
+}
+
+/* Burger Supremacy Toggle */
+.burger-pizza-toggle {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: var(--ivory-warm);
+    border-radius: 20px;
+    padding: 8px;
+    width: 100%;
+    border: 1px solid rgba(212,139,139,0.1);
+}
+
+.food-icon {
+    font-size: 1.5rem;
+    transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+}
+
+.food-icon.win {
+    animation: cheer 0.6s infinite alternate cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.food-icon.lose {
+    opacity: 0.25;
+    transform: scale(0.8);
+}
+
+@keyframes cheer {
+    0% { transform: scale(1) translateY(0); }
+    100% { transform: scale(1.3) translateY(-6px) rotate(5deg); }
+}
+
+/* Colors transition */
+.scrapbook-card.dark-theme-active {
+    background: var(--dark-navy) !important;
+    border-color: #3b3b4f !important;
+    color: var(--white) !important;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+
+.scrapbook-card.dark-theme-active .card-title {
+    color: var(--pink-blush);
+}
+
+/* Tori enemy shaking sticker */
+.tori-enemy {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    background: #ff4757;
+    color: white;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 6px;
+    transform: rotate(6deg);
+    box-shadow: 0 4px 10px rgba(255, 71, 87, 0.3);
+    transition: transform 0.1s ease;
+}
+
+.tori-enemy.shake {
+    animation: violentShake 0.4s ease infinite;
+}
+
+@keyframes violentShake {
+    0% { transform: translate(1px, 1px) rotate(6deg); }
+    15% { transform: translate(-2px, -3px) rotate(2deg); }
+    30% { transform: translate(-3px, 0px) rotate(9deg); }
+    45% { transform: translate(0px, 2px) rotate(4deg); }
+    60% { transform: translate(2px, -1px) rotate(8deg); }
+    75% { transform: translate(-1px, 2px) rotate(5deg); }
+    90% { transform: translate(2px, 2px) rotate(7deg); }
+    100% { transform: translate(1px, -2px) rotate(6deg); }
+}
+
+/* 4. Dreams Section */
+.dreams-box {
+    margin-top: 15px;
+    position: relative;
+    padding: 30px;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    box-shadow: 0 12px 35px rgba(212, 139, 139, 0.08);
+}
+
+.dream-glow-aura {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 160px;
+    height: 160px;
+    background: radial-gradient(circle, rgba(255, 217, 226, 0.9) 0%, rgba(255, 247, 243, 0) 70%);
+    z-index: -1;
+    border-radius: 50%;
+    animation: pulseGlow 4s infinite ease-in-out;
+}
+
+@keyframes pulseGlow {
+    0%, 100% { transform: translate(-50%, -50%) scale(1.0); opacity: 0.5; }
+    50% { transform: translate(-50%, -50%) scale(1.35); opacity: 0.85; }
+}
+
+.dream-item {
+    margin: 15px 0;
+    text-align: center;
+}
+
+.dream-bullet {
+    font-size: 2rem;
+    margin-bottom: 6px;
+    animation: pulseBullet 2s infinite alternate ease-in-out;
+}
+
+@keyframes pulseBullet {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.15); }
+}
+
+.dream-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--slate-blue);
+    line-height: 1.4;
+    letter-spacing: -0.2px;
+}
+
+.dream-caption {
+    font-family: 'Caveat', cursive;
+    font-size: 1.3rem;
+    color: var(--dusty-rose);
+    text-align: center;
+    margin-top: 20px;
+    font-weight: 600;
+}
+
+/* 5. Dogs Section */
+.dog-cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    margin-top: 10px;
+}
+
+.dog-card {
+    background: var(--white);
+    border-radius: 24px;
+    padding: 14px;
+    box-shadow: 0 12px 30px rgba(74, 48, 48, 0.05);
+    border: 1px solid rgba(212, 139, 139, 0.12);
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.dog-card:hover {
+    transform: translateY(-5px) scale(1.01);
+    box-shadow: 0 15px 35px rgba(74, 48, 48, 0.08);
+    border-color: var(--pink-blush);
+}
+
+.dog-photo-wrapper {
+    width: 95px;
+    height: 95px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 3px solid var(--pink-blush);
+    flex-shrink: 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.dog-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.dog-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    color: var(--slate-blue);
+    margin-bottom: 4px;
+    font-weight: 700;
+}
+
+.dog-info p {
+    font-size: 0.82rem;
+    color: #777;
+    margin-bottom: 6px;
+}
+
+.dog-info .handwritten-quote {
+    font-family: 'Caveat', cursive;
+    font-size: 1.15rem;
+    color: var(--dusty-rose);
+    font-weight: 600;
+}
+
+/* Paw floating animations */
+.paw-particle {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
+    z-index: 10;
+    opacity: 1;
+    fill: var(--dusty-rose);
+}
+
+/* Bruno Wagging Tail */
+.dog-card .tail-element {
+    transition: transform 0.1s ease;
+    transform-origin: bottom left;
+}
+
+.dog-card:hover .tail-element {
+    animation: wagTail 0.25s infinite alternate ease-in-out;
+}
+
+@keyframes wagTail {
+    0% { transform: rotate(-8deg); }
+    100% { transform: rotate(18deg); }
+}
+
+/* 6. Somu Facts sticky notes style */
+.facts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 10px;
+}
+
+.fact-note {
+    background: #fffae0; /* Post-it yellow */
+    padding: 16px 16px 16px 28px;
+    box-shadow: 3px 6px 18px rgba(74, 48, 48, 0.06);
+    position: relative;
+    border-left: 5px solid #fdd835;
+    transform: rotate(1deg);
+    transition: all 0.3s ease;
+}
+
+.fact-note:nth-child(even) {
+    background: #eaf6eb; /* Soft green */
+    border-left-color: #4caf50;
+    transform: rotate(-1.5deg);
+}
+
+.fact-note:nth-child(3n) {
+    background: #f4e7f6; /* Soft lavender */
+    border-left-color: #ab47bc;
+    transform: rotate(2deg);
+}
+
+.fact-note:hover {
+    transform: rotate(0deg) scale(1.02);
+    box-shadow: 4px 8px 22px rgba(74, 48, 48, 0.08);
+}
+
+.fact-note .tape-pin {
+    position: absolute;
+    top: -9px;
+    left: 42%;
+    width: 65px;
+    height: 16px;
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(0,0,0,0.04);
+    transform: rotate(-2deg);
+    backdrop-filter: blur(1px);
+}
+
+.fact-note p {
+    font-family: 'Caveat', cursive;
+    font-size: 1.45rem;
+    color: #333;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+/* 7. Timeline Node draw path */
+.timeline-container {
+    position: relative;
+    padding-left: 22px;
+    margin-top: 25px;
+}
+
+.timeline-line {
+    position: absolute;
+    left: 4px;
+    top: 0;
+    width: 3.5px;
+    height: 100%;
+    background-color: var(--pink-blush);
+    transform-origin: top;
+    transform: scaleY(0);
+}
+
+.timeline-node {
+    position: relative;
+    margin-bottom: 45px;
+    padding-left: 18px;
+}
+
+.timeline-node::before {
+    content: '❤';
+    position: absolute;
+    left: -26px;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    background: var(--ivory-warm);
+    border: 2px solid var(--dusty-rose);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+    color: var(--dusty-rose);
+    z-index: 5;
+    box-shadow: 0 0 10px rgba(212,139,139,0.3);
+}
+
+.timeline-date {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--dusty-rose);
+    margin-bottom: 8px;
+}
+
+.timeline-details {
+    background: var(--white);
+    padding: 14px;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(74, 48, 48, 0.04);
+    border: 1px solid rgba(212, 139, 139, 0.1);
+}
+
+.timeline-details h4 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    color: var(--slate-blue);
+    margin-bottom: 4px;
+    font-weight: 600;
+}
+
+.timeline-details p {
+    font-size: 0.85rem;
+    color: #666;
+    line-height: 1.4;
+}
+
+/* 8. Sandy Collage styling */
+.collage-grid {
+    position: relative;
+    height: 400px;
+    margin-top: 20px;
+}
+
+.collage-item {
+    position: absolute;
+    background: var(--white);
+    padding: 9px 9px 26px 9px;
+    border-radius: 2px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.07);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.15), z-index 0.2s ease;
+    cursor: pointer;
+    border: 1px solid rgba(0,0,0,0.01);
+}
+
+.collage-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 1px;
+}
+
+/* Polaroid Placements & Turns */
+.collage-item.c1 { width: 130px; height: 170px; top: 10px; left: 10px; transform: rotate(-9deg); z-index: 3; }
+.collage-item.c2 { width: 140px; height: 180px; top: 20px; right: 10px; transform: rotate(7deg); z-index: 2; }
+.collage-item.c3 { width: 120px; height: 160px; bottom: 35px; left: 20px; transform: rotate(11deg); z-index: 4; }
+.collage-item.c4 { width: 130px; height: 175px; bottom: 25px; right: 20px; transform: rotate(-6deg); z-index: 3; }
+.collage-item.c5 { width: 100px; height: 130px; top: 140px; left: calc(50% - 50px); transform: rotate(-2deg); z-index: 5; }
+
+.collage-item:hover {
+    transform: scale(1.15) rotate(0deg) !important;
+    z-index: 100 !important;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+.collage-item::after {
+    content: '';
+    position: absolute;
+    bottom: 6px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-family: 'Caveat', cursive;
+    font-size: 1.15rem;
+    color: #666;
+    font-weight: 600;
+}
+
+.collage-item.c1::after { content: 'cutie 💖'; }
+.collage-item.c2::after { content: 'that smile...'; }
+.collage-item.c3::after { content: 'happy days'; }
+.collage-item.c4::after { content: 'saree look ✨'; }
+.collage-item.c5::after { content: 'puppy love'; }
+
+.polaroid-tape {
+    position: absolute;
+    width: 65px;
+    height: 18px;
+    background: rgba(255,255,255,0.45);
+    backdrop-filter: blur(1.5px);
+    z-index: 10;
+}
+.collage-item.c1 .polaroid-tape { top: -9px; left: 25px; transform: rotate(-16deg); }
+.collage-item.c2 .polaroid-tape { top: -9px; right: 25px; transform: rotate(12deg); }
+
+/* 9. Final Page twinkles */
+#final-page {
+    background-color: var(--dark-navy) !important;
+    color: var(--ivory-warm);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    padding-top: 60px;
+}
+
+#final-page .page-title {
+    color: var(--pink-blush);
+}
+
+.constellation-wrapper {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px 0;
+}
+
+.constellation-svg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.somu-best {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--pink-blush);
+    margin-bottom: 10px;
+    text-shadow: 0 0 20px rgba(255,217,226,0.6);
+}
+
+.magic-quote {
+    font-family: 'Caveat', cursive;
+    font-size: 1.75rem;
+    max-width: 290px;
+    line-height: 1.4;
+    color: #fff0f3;
+}
+
+.made-with-love {
+    font-size: 0.78rem;
+    font-family: 'Poppins', sans-serif;
+    color: #8b8bb9;
+    margin-top: 35px;
+    line-height: 1.5;
+}
+
+.btn-replay {
+    background: transparent;
+    border: 1.5px solid var(--pink-blush);
+    color: var(--pink-blush);
+    padding: 12px 28px;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 25px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 15px rgba(255, 217, 226, 0.1);
+}
+
+.btn-replay:hover {
+    background: var(--pink-blush);
+    color: var(--dark-navy);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 217, 226, 0.3);
+}
+
+/* Touch Trail Star Particle elements */
+.canvas-star {
+    position: absolute;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    animation: fadeStar 0.9s forwards linear;
+}
+
+@keyframes fadeStar {
+    0% { opacity: 1; transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(0) rotate(220deg); }
+}
+
+/* Mobile Screens responsiveness overrides */
+@media (max-width: 768px) {
+    body {
+        background-color: var(--ivory-warm);
+        background-image: none;
+    }
+    #app-container {
+        max-width: 100%;
+        max-height: 100%;
+        border-radius: 0;
+        box-shadow: none;
+    }
+    .fairy-lights {
+        display: none;
+    }
+    .desktop-polaroid {
+        display: none;
+    }
+}

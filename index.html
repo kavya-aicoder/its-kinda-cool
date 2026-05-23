@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Somu’s Little World ♡</title>
+    <meta name="description" content="A dreamy interactive birthday scrapbook and journal for Somu. Happy Birthday, Somu! ♡">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Outer Desktop Background petalled ornaments -->
+    <div class="desktop-bg-decor">
+        <div class="flower-petal"></div>
+        <div class="flower-petal"></div>
+        <div class="flower-petal"></div>
+        <div class="flower-petal"></div>
+    </div>
+
+    <!-- Phone container frame -->
+    <div id="app-container">
+        
+        <!-- Canvas for Sparkle Mouse/Touch Trail -->
+        <canvas id="sparkle-canvas"></canvas>
+
+        <!-- Floating Music Player Control -->
+        <div class="audio-player-container">
+            <button id="music-btn" class="music-btn" onclick="toggleAudio()" aria-label="Toggle Music">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6zm-2 16c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Notebook Binder Overlay for visual sketchbook feel -->
+        <div class="notebook-binder">
+            <div class="binder-hole"><div class="binder-ring"></div></div>
+            <div class="binder-hole"><div class="binder-ring"></div></div>
+            <div class="binder-hole"><div class="binder-ring"></div></div>
+            <div class="binder-hole"><div class="binder-ring"></div></div>
+            <div class="binder-hole"><div class="binder-ring"></div></div>
+            <div class="binder-hole"><div class="binder-ring"></div></div>
+            <div class="binder-hole"><div class="binder-ring"></div></div>
+            <div class="binder-hole"><div class="binder-ring"></div></div>
+            <div class="binder-hole"><div class="binder-ring"></div></div>
+            <div class="binder-hole"><div class="binder-ring"></div></div>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- 1. OPENING SCREEN                            -->
+        <!-- ============================================ -->
+        <section id="opening-screen" class="screen">
+            <div class="starry-background"></div>
+            
+            <div class="intro-textbox">
+                <div id="intro-typing" class="intro-typing"></div>
+                <h1 id="intro-title" class="intro-title">Happy Birthday<br>Somu ♡</h1>
+                <button id="enter-btn" class="btn-enter-world" onclick="enterWorld()">Enter Her World →</button>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- SCRAPBOOK SCREEN WRAPPER                     -->
+        <!-- ============================================ -->
+        <div id="scrapbook-screen" class="screen hidden scrapbook-paper">
+            <div class="scrapbook-content">
+
+                <!-- ============================================ -->
+                <!-- 2. HERO PAGE                                 -->
+                <!-- ============================================ -->
+                <section id="hero-page" class="scrapbook-page">
+                    <h2 class="page-title">Somu’s Little World ♡</h2>
+                    
+                    <div class="hero-portrait-wrapper">
+                        <!-- Masking tape decoration -->
+                        <div class="tape-sticker tape-top"></div>
+                        <img src="images/somu_rose.png" alt="Somu looking dreamy with roses" class="hero-portrait">
+                        <div class="hero-caption">saree look 🌹</div>
+                    </div>
+
+                    <div class="dynamic-words-box" id="dynamic-words-box">
+                        <!-- Words injected by script.js -->
+                    </div>
+
+                    <div style="text-align: center; margin-top: 10px;">
+                        <span class="handwritten-text" style="font-size: 1.8rem; display: block;">24th May ✨</span>
+                        <span class="handwritten-text" style="font-size: 1.2rem; color: #888; display: block;">scroll down to read her diary...</span>
+                    </div>
+                </section>
+
+                <!-- ============================================ -->
+                <!-- 3. WHO IS SOMU PAGE                          -->
+                <!-- ============================================ -->
+                <section id="who-is-somu-page" class="scrapbook-page">
+                    <h2 class="page-title">Who is Somu? 😭</h2>
+                    
+                    <div class="cards-grid">
+                        
+                        <!-- Magnum Ice Cream Card -->
+                        <div class="scrapbook-card" onclick="handleMagnumClick(this)">
+                            <div class="card-title">🍦 Fav Ice Cream</div>
+                            <div class="card-content">Walls Magnum</div>
+                            <div class="melt-overlay">
+                                <div class="melt-text">melting for you... 🍦💖</div>
+                            </div>
+                        </div>
+
+                        <!-- Rose Flower Card -->
+                        <div class="scrapbook-card" onclick="handleRoseClick(this)">
+                            <div class="card-title">🌹 Favourite Flower</div>
+                            <div class="card-content">Pink Rose</div>
+                            <div class="rose-bloom-container">
+                                <svg class="rose-svg" viewBox="0 0 100 100">
+                                    <path class="rose-path" d="M50 85 C50 65 40 55 50 40 C52 38 56 38 58 40 C62 44 58 52 50 56 C42 52 38 44 42 40 C44 38 48 38 50 40 C50 30 65 25 55 15 C45 25 60 30 50 40 C40 30 35 25 45 15" />
+                                    <!-- A glowing blooming center -->
+                                    <circle cx="50" cy="40" r="8" fill="#FFD9E2" opacity="0.6" />
+                                </svg>
+                            </div>
+                        </div>
+
+                        <!-- Rajma Chawal Card -->
+                        <div class="scrapbook-card" onclick="handleComfortClick(this)">
+                            <div class="card-title">🍛 Comfort Food</div>
+                            <div class="card-content">Rajma Chawal ♡</div>
+                            <div class="steam-container">
+                                <div class="steam-line"></div>
+                                <div class="steam-line"></div>
+                                <div class="steam-line"></div>
+                            </div>
+                            <div class="handwritten-text" style="font-size: 1.1rem; text-align: right; color: var(--dusty-rose);">“home in a plate.”</div>
+                        </div>
+
+                        <!-- Burger vs Pizza Card -->
+                        <div class="scrapbook-card">
+                            <div class="card-title">🍔 Burger > Pizza</div>
+                            <div class="burger-pizza-toggle">
+                                <span id="burger-icon" class="food-icon win" onclick="handleFoodToggle(this, 'burger')">🍔</span>
+                                <span style="font-size: 0.8rem; color: #999;">vs</span>
+                                <span id="pizza-icon" class="food-icon" onclick="handleFoodToggle(this, 'pizza')">🍕</span>
+                            </div>
+                            <div id="burger-label" style="font-size: 0.75rem; text-align: center; color: var(--dusty-rose); font-weight: 600;">Burger wins! 🍔🏆</div>
+                        </div>
+
+                        <!-- Color Themes Card (spans full width at bottom) -->
+                        <div class="scrapbook-card" onclick="handleColorsClick(this)" style="grid-column: span 2; height: 110px;">
+                            <div class="card-title">🖤 Fav Colours</div>
+                            <div class="card-content">Black & Navy Blue</div>
+                            <div class="handwritten-text" style="font-size: 0.95rem; color: var(--dusty-rose); margin-top: 5px;">tap to match theme...</div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- ============================================ -->
+                <!-- 4. HER DREAMS PAGE                           -->
+                <!-- ============================================ -->
+                <section class="scrapbook-page">
+                    <h2 class="page-title">Her Dreams ✨</h2>
+                    
+                    <div class="dreams-box">
+                        <div class="dream-glow-aura"></div>
+                        
+                        <div class="dream-item">
+                            <div class="dream-bullet">🌙</div>
+                            <div class="dream-text">become the gravity behind her own dreams</div>
+                        </div>
+                        
+                        <div style="text-align: center; color: var(--dusty-rose); font-family: 'Caveat'; font-size: 1.5rem;">&</div>
+                        
+                        <div class="dream-item">
+                            <div class="dream-bullet">constellations ✨</div>
+                            <div class="dream-text">turn her mother’s sacrifices into constellations</div>
+                        </div>
+
+                        <div class="dream-caption">
+                            “her dreams are big, her focus is sharp.”
+                        </div>
+                    </div>
+
+                    <!-- Decorative doodle notes -->
+                    <div class="fact-note" style="margin-top: 25px; transform: rotate(-2deg); background: #fff0f3; border-left-color: var(--dusty-rose);">
+                        <p style="font-size: 1.25rem;">Somu is a fighter. She will make all her dreams come true, step by step! 💖</p>
+                    </div>
+                </section>
+
+                <!-- ============================================ -->
+                <!-- 5. HER LITTLE FAMILY                         -->
+                <!-- ============================================ -->
+                <section class="scrapbook-page">
+                    <h2 class="page-title">Her Little Family 🐺</h2>
+                    
+                    <div class="dog-cards-container">
+                        
+                        <!-- Leo Card -->
+                        <div class="dog-card" onclick="spawnPaws(this)">
+                            <div class="dog-photo-wrapper">
+                                <img src="images/leo.jpg" alt="Leo Husky" class="dog-photo">
+                            </div>
+                            <div class="dog-info">
+                                <h3>LEO</h3>
+                                <p>The Siberian Husky ❄️</p>
+                                <span class="dog-info handwritten-quote">tap for paw footprints🐾</span>
+                            </div>
+                        </div>
+
+                        <!-- Bruno Card -->
+                        <div class="dog-card">
+                            <div class="dog-photo-wrapper">
+                                <img src="images/bruno.png" alt="Bruno Retriever" class="dog-photo">
+                            </div>
+                            <div class="dog-info" style="display: flex; flex-direction: column; justify-content: center; position: relative; width: 100%;">
+                                <div>
+                                    <h3>BRUNO</h3>
+                                    <p>Golden Retriever sunshine ☀️</p>
+                                    <span class="dog-info handwritten-quote">hover to wag tail!</span>
+                                </div>
+                                
+                                <!-- Cute tail icon wag animation absolute placement -->
+                                <svg class="tail-element" style="position: absolute; right: 10px; bottom: 0px; width: 35px; height: 35px;" viewBox="0 0 100 100">
+                                    <path d="M10 80 C 30 70, 60 50, 80 15 C 85 8, 90 20, 75 40 C 60 60, 30 82, 10 80 Z" fill="#ffd54f" stroke="#ffb300" stroke-width="2" />
+                                </svg>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- ============================================ -->
+                <!-- 6. SOMU FACTS                                -->
+                <!-- ============================================ -->
+                <section class="scrapbook-page">
+                    <h2 class="page-title">Somu Facts 🐰</h2>
+                    
+                    <div class="facts-list">
+                        
+                        <div class="fact-note">
+                            <div class="tape-pin"></div>
+                            <p>nickname: pyari boss 🐰</p>
+                        </div>
+                        
+                        <div class="fact-note">
+                            <div class="tape-pin"></div>
+                            <p>mummy ji calls her “somu” ♡</p>
+                        </div>
+
+                        <div class="fact-note">
+                            <div class="tape-pin"></div>
+                            <p>doesn’t like talking too much 🤐</p>
+                        </div>
+
+                        <div class="fact-note">
+                            <div class="tape-pin"></div>
+                            <p>isolates herself sometimes 🪐</p>
+                        </div>
+
+                        <div class="fact-note">
+                            <div class="tape-pin"></div>
+                            <p>loves maggie way too much 🍜</p>
+                        </div>
+
+                        <div class="fact-note">
+                            <div class="tape-pin"></div>
+                            <p>Victoria Secret Pure Seduction ✨</p>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- ============================================ -->
+                <!-- 7. THE TIMELINE                              -->
+                <!-- ============================================ -->
+                <section class="scrapbook-page">
+                    <h2 class="page-title">The Timeline ⏳</h2>
+                    
+                    <div class="timeline-container">
+                        <!-- Scroll scale vertical line -->
+                        <div class="timeline-line"></div>
+                        
+                        <div class="timeline-node">
+                            <div class="timeline-date">9 December</div>
+                            <div class="timeline-details">
+                                <h4>👻 Snapchat</h4>
+                                <p>first time meet on snapchat, 9 december — the day destiny accidentally introduced two souls. 😭❤️</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-node" style="margin-bottom: 10px;">
+                            <div class="timeline-date">24 May</div>
+                            <div class="timeline-details">
+                                <h4>🎂 Today</h4>
+                                <p>celebrating her beautiful life and existence. Somu's little world gets a little brighter.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- ============================================ -->
+                <!-- 8. UNFORGETTABLE MEMORY -> SANDY             -->
+                <!-- ============================================ -->
+                <section class="scrapbook-page">
+                    <h2 class="page-title">Unforgettable Memory ➔ Sandy 🐾</h2>
+                    
+                    <div style="text-align: center; margin-bottom: 10px;">
+                        <span class="handwritten-text" style="font-size: 1.6rem; color: var(--dusty-rose);">“some souls become home.”</span>
+                    </div>
+
+                    <div style="display: flex; justify-content: center; align-items: center; height: 380px; position: relative;">
+                        <!-- Sandy Polaroid -->
+                        <div class="collage-item" style="width: 250px; height: 320px; position: relative; transform: rotate(-3deg); padding: 14px 14px 45px 14px; box-shadow: 0 15px 40px rgba(0,0,0,0.12); background: white; border-radius: 2px;">
+                            <div class="polaroid-tape" style="width: 80px; top: -10px; left: calc(50% - 40px); transform: rotate(1deg);"></div>
+                            <img src="images/sandy.jpg" alt="Sandy Dog" style="width: 100%; height: 100%; object-fit: cover; border-radius: 2px;">
+                            <div style="position: absolute; bottom: 10px; left: 0; width: 100%; text-align: center; font-family: 'Caveat', cursive; font-size: 1.45rem; color: #555; font-weight: 700;">sandy baby, forever in our hearts. 🕊️</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ============================================ -->
+                <!-- 9. ONLY LOVE -> SANDY                        -->
+                <!-- ============================================ -->
+                <section class="scrapbook-page">
+                    <h2 class="page-title">Only Love ➔ Sandy ❤️</h2>
+                    
+                    <div style="text-align: center; margin-bottom: 10px;">
+                        <span class="handwritten-text" style="font-size: 1.6rem; color: var(--dusty-rose);">“some people become home.”</span>
+                    </div>
+
+                    <div class="collage-grid">
+                        
+                        <!-- Polaroid 1 -->
+                        <div class="collage-item c1">
+                            <div class="polaroid-tape"></div>
+                            <img src="images/somu_1.jpg" alt="Somu looking pretty">
+                        </div>
+
+                        <!-- Polaroid 2 -->
+                        <div class="collage-item c2">
+                            <div class="polaroid-tape"></div>
+                            <img src="images/somu_2.jpg" alt="Somu smiling">
+                        </div>
+
+                        <!-- Polaroid 3 -->
+                        <div class="collage-item c3">
+                            <img src="images/somu_3.jpg" alt="Somu happy">
+                        </div>
+
+                        <!-- Polaroid 4 -->
+                        <div class="collage-item c4">
+                            <img src="images/somu_4.jpg" alt="Somu portrait">
+                        </div>
+
+                        <!-- Polaroid 5 (Puppy) -->
+                        <div class="collage-item c5">
+                            <img src="images/somu_puppy.jpg" alt="Somu holding puppy">
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- ============================================ -->
+                <!-- 10. FINAL PAGE                               -->
+                <!-- ============================================ -->
+                <section id="final-page" class="scrapbook-page">
+                    <h2 class="page-title">Somu Best Hai 🐰</h2>
+                    
+                    <div class="constellation-wrapper">
+                        <!-- Constellations lines animated outline -->
+                        <svg class="constellation-svg" viewBox="0 0 100 100">
+                            <!-- Draw simple star constellation -->
+                            <line x1="20" y1="20" x2="45" y2="40" stroke="rgba(255, 217, 226, 0.4)" stroke-width="1.5" stroke-dasharray="4" />
+                            <line x1="45" y1="40" x2="80" y2="30" stroke="rgba(255, 217, 226, 0.4)" stroke-width="1.5" stroke-dasharray="4" />
+                            <line x1="45" y1="40" x2="50" y2="75" stroke="rgba(255, 217, 226, 0.4)" stroke-width="1.5" stroke-dasharray="4" />
+                            <line x1="50" y1="75" x2="15" y2="85" stroke="rgba(255, 217, 226, 0.4)" stroke-width="1.5" stroke-dasharray="4" />
+                            
+                            <!-- Glowing Stars -->
+                            <circle cx="20" cy="20" r="2.5" fill="#FFF7F3" />
+                            <circle cx="45" cy="40" r="3.5" fill="#FFD9E2" />
+                            <circle cx="80" cy="30" r="2" fill="#FFF7F3" />
+                            <circle cx="50" cy="75" r="3" fill="#FFD9E2" />
+                            <circle cx="15" cy="85" r="2.5" fill="#FFF7F3" />
+                        </svg>
+                        
+                        <div class="somu-best">You are magic,</div>
+                    </div>
+
+                    <div class="magic-quote">
+                        and the world is lucky to have you. ✨
+                    </div>
+
+                    <button class="btn-replay" onclick="replayMemories()">Replay Memories ♡</button>
+
+                    <div class="made-with-love">
+                        made with love,<br>
+                        late night creativity,<br>
+                        and a little bit of overthinking ♡
+                    </div>
+                </section>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
